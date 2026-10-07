@@ -9,7 +9,7 @@ default_ethereum_client_images:
   grandine: ethpandaops/grandine:develop
   ### Execution layer clients
   besu: hyperledger/besu:latest
-  geth: ethpandaops/geth:master
+  geth: ethereum/client-go:v1.17.7
   erigon: erigontech/erigon:main-latest
   nethermind: nethermindeth/nethermind:master
   reth: ghcr.io/paradigmxyz/reth:latest
