@@ -1,0 +1,138 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/dugtrio.yaml.j2
+
+dugtrio:
+  fullnameOverride: dugtrio
+  image:
+    repository: ethpandaops/dugtrio
+    tag: latest
+    pullPolicy: Always
+  resources:
+    requests:
+      cpu: 100m
+      memory: 200Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/configuration-snippet: |
+        sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu-1.0.1.js" integrity="sha384-icGX6g6CzB0tqlhDc6Su4c6IPVbcbUvfM3xjbbFYsYBwuZR79WkmOxDhGEPfmyn2" crossorigin="anonymous"></script></head>';
+        sub_filter_types text/html;
+        sub_filter_once off;
+    hosts:
+      - host: beacon.dc-devnet-0.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+  dugtrioFrontendTitle: "Dugtrio: dc-devnet-0"
+  dugtrioProxyCount: 2
+  dugtrioProxyBlockedPaths:
+    - "^/teku/v[0-9]+/admin/.*"
+
+  endpoints:
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-bootnode-1.srv.dc-devnet-0.ethpandaops.io
+    name: bootnode-1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-1.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-10.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-10
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-11.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-11
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-12.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-12
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-13.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-13
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-14.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-14
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-15.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-15
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-16.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-16
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-17.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-17
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-18.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-18
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-19.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-19
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-2.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-2
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-20.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-20
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-21.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-21
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-22.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-22
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-23.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-23
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-24.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-24
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-25.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-25
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-26.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-26
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-27.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-27
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-28.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-28
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-29.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-29
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-3.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-3
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-30.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-30
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-31.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-31
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-32.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-32
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-33.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-33
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-34.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-34
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-35.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-35
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-36.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-36
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-37.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-37
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-38.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-38
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-39.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-39
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-4.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-4
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-40.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-40
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-41.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-41
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-42.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-42
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-43.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-43
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-44.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-44
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-45.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-45
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-46.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-46
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-47.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-47
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-48.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-48
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-49.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-49
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-5.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-5
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-50.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-50
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-6.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-6
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-7.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-7
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-8.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-8
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.dc-devnets.node_ingress.combined}>@bn-prysm-geth-9.srv.dc-devnet-0.ethpandaops.io
+    name: prysm-geth-9
