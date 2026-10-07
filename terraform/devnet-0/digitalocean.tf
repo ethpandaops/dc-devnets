@@ -23,10 +23,8 @@ variable "digitalocean_fullnode_size" {
 
 variable "digitalocean_regions" {
   default = [
-    "nyc1",
     "sgp1",
     "lon1",
-    "nyc3",
     "ams3",
     "fra1",
     "tor1",
