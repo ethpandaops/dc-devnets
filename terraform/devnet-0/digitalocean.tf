@@ -18,7 +18,7 @@ variable "digitalocean_supernode_size" {
 
 variable "digitalocean_fullnode_size" {
   type    = string
-  default = "s-8vcpu-16gb-amd"
+  default = "s-8vcpu-16gb"
 }
 
 variable "digitalocean_regions" {
