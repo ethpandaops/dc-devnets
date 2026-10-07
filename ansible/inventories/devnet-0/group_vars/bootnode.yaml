@@ -68,6 +68,7 @@ prysm_container_command_extra_args: >-
       '--verbosity=debug',
       '--subscribe-all-subnets',
       '--goldfish-vote-ledger',
+      '--ffg-committees-per-subnet-per-slot=3',
       '--p2p-colocation-whitelist=0.0.0.0/0,::/0',
     ]
     +
