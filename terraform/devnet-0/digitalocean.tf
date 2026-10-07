@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 variable "digitalocean_project_name" {
   type    = string
-  default = "Template"
+  default = "dc-devnets"
 }
 
 variable "digitalocean_ssh_key_name" {
@@ -23,10 +23,8 @@ variable "digitalocean_fullnode_size" {
 
 variable "digitalocean_regions" {
   default = [
-    "nyc1",
     "sgp1",
     "lon1",
-    "nyc3",
     "ams3",
     "fra1",
     "tor1",
@@ -40,13 +38,14 @@ variable "digitalocean_regions" {
 //                                        LOCALS
 ////////////////////////////////////////////////////////////////////////////////////////
 locals {
-  digitalocean_has_servers = length(local.digitalocean_nodes) > 0
+  digitalocean_vpc_range_order = ["nyc1", "sgp1", "lon1", "nyc3", "ams3", "fra1", "tor1", "blr1", "sfo3", "syd1"]
+  digitalocean_has_servers     = length(local.digitalocean_nodes) > 0
 
   digitalocean_vpcs = {
     for region in var.digitalocean_regions : region => {
       name     = "${var.ethereum_network}-${region}"
       region   = region
-      ip_range = cidrsubnet(var.base_cidr_block, 8, index(var.digitalocean_regions, region))
+      ip_range = cidrsubnet(var.base_cidr_block, 8, index(local.digitalocean_vpc_range_order, region))
     }
   }
 }

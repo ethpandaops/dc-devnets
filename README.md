@@ -3,9 +3,9 @@
 <h1 align="center">Infrastructure code for Dev/Testnets</h1>
 
 <p align="center">
-<a href="https://github.com/ethpandaops/template-devnets/actions/workflows/lint-ansible.yaml"><img src="https://github.com/ethpandaops/template-devnets/actions/workflows/lint-ansible.yaml/badge.svg"></a>
-<a href="https://github.com/ethpandaops/template-devnets/actions/workflows/lint-terraform.yaml"><img src="https://github.com/ethpandaops/template-devnets/actions/workflows/lint-terraform.yaml/badge.svg"></a>
-<a href="https://github.com/ethpandaops/template-devnets/actions/workflows/lint-helm.yaml"><img src="https://github.com/ethpandaops/template-devnets/actions/workflows/lint-helm.yaml/badge.svg"></a>
+<a href="https://github.com/ethpandaops/dc-devnets/actions/workflows/lint-ansible.yaml"><img src="https://github.com/ethpandaops/dc-devnets/actions/workflows/lint-ansible.yaml/badge.svg"></a>
+<a href="https://github.com/ethpandaops/dc-devnets/actions/workflows/lint-terraform.yaml"><img src="https://github.com/ethpandaops/dc-devnets/actions/workflows/lint-terraform.yaml/badge.svg"></a>
+<a href="https://github.com/ethpandaops/dc-devnets/actions/workflows/lint-helm.yaml"><img src="https://github.com/ethpandaops/dc-devnets/actions/workflows/lint-helm.yaml/badge.svg"></a>
 </p>
 
 This repository contains the infrastructure code used to setup ~all~ dev/testnets. A lot of the code uses reusable components either provided by our [ansible collection](https://github.com/ethpandaops/ansible-collection-general) or our [helm charts for kubernetes](https://github.com/ethpandaops/ethereum-helm-charts/).
@@ -14,7 +14,7 @@ This repository contains the infrastructure code used to setup ~all~ dev/testnet
 
 Status   | Network    | Links   | Ansible                                                      | Terraform | Kubernetes
 ------   | --------   | ----     |  -----                                                       | -------   | ------
- 🟢Template🔴 | [devnet-0](https://template.devnet.io/)   | [Network config](network-configs/devnet-0) / [Inventory](https://bootnode-1.devnet-0.ethpandaops.io/meta/api/v1/inventory.json) / [Validator ranges](https://bootnode-1.devnet-0.ethpandaops.io/meta/api/v1/validator-ranges.json)    | [🔗](ansible/inventories/devnet-0) | [🔗](terraform/devnet-0) | [🔗](kubernetes/devnet-0)
+ WIP | [devnet-0](https://notes.ethereum.org/@ethpandaops/dc-devnet-0) | [Network config](network-configs/devnet-0) / [Inventory](https://bootnode-1.srv.dc-devnet-0.ethpandaops.io/meta/api/v1/inventory.json) / [Validator ranges](https://bootnode-1.srv.dc-devnet-0.ethpandaops.io/meta/api/v1/validator-ranges.json) | [🔗](ansible/inventories/devnet-0) | [🔗](terraform/devnet-0) | -
 
 # Development
 ## Version management for tools
