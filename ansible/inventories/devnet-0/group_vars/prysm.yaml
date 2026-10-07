@@ -49,6 +49,7 @@ prysm_container_command_extra_simple_args:
   - --min-sync-peers=1
   - --verbosity=debug
   - --subscribe-all-subnets
+  - --goldfish-vote-ledger
   # Devnet peers are few and often share a /24, which prysm's colocation limit
   # would otherwise treat as a sybil cluster and refuse to peer with.
   - --p2p-colocation-whitelist=0.0.0.0/0,::/0
@@ -64,4 +65,5 @@ prysm_validator_container_entrypoint:
 prysm_validator_container_command_extra_args:
   - --chain-config-file=/network-config/config.yaml
   - --graffiti={{ inventory_hostname }}
+  - --decoupled-ffg-vote-at-slot-start
 prysm_validator_datadir: /data/prysm-validator

@@ -39,48 +39,46 @@ bootnodoor_container_env:
 
 # role: ethpandaops.general.ethereum_node
 ethereum_node_el: geth
-ethereum_node_cl: teku
+ethereum_node_cl: prysm
 ethereum_node_cl_validator_enabled: false
 
-# role: ethpandaops.general.teku
-teku_container_name: beacon
-teku_container_image: "{{ default_ethereum_client_images.teku }}"
-teku_container_env:
+prysm_container_tty: true
+prysm_pprof_enabled: true
+# role: ethpandaops.general.prysm
+prysm_container_name: beacon
+prysm_container_image: "{{ default_ethereum_client_images.prysm }}"
+prysm_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
   VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon | string }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
-teku_container_volumes:
-  - "{{ teku_datadir }}:/data"
-  - "{{ teku_auth_jwt_path }}:/execution-auth.jwt:ro"
+prysm_container_volumes:
+  - "{{ prysm_datadir }}:/data"
+  - "{{ prysm_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
-teku_container_command_extra_args:
-  - --network=/network-config/config.yaml
-  - --genesis-state=/network-config/genesis.ssz
-  - --p2p-peer-upper-bound=100
-  - --data-storage-non-canonical-blocks-enabled=true
-  - --data-storage-mode=ARCHIVE
-  - --logging=info
-  - --Xlog-include-p2p-warnings-enabled
-  - --metrics-block-timing-tracking-enabled
-  - >-
-    --p2p-discovery-bootnodes={{
-      (
-        (
-          groups['bootnode']
-          | map('extract', hostvars, ['ethereum_node_fact_discovery_cl_enr'])
-          | select('defined')
-          | list
-        )
-        +
-        (
-          groups['bootnode']
-          | map('extract', hostvars, ['bootnodoor_fact_enr'])
-          | select('defined')
-          | list
-        )
-      )
-      | join(',')
-    }}
+prysm_container_entrypoint:
+  - /app/cmd/beacon-chain/beacon-chain
+prysm_container_command_extra_args: >-
+  {{
+    [
+      '--grpc-gateway-corsdomain=*',
+      '--chain-config-file=/network-config/config.yaml',
+      '--genesis-state=/network-config/genesis.ssz',
+      '--contract-deployment-block=' ~ ethereum_network_deposit_contract_block,
+      '--min-sync-peers=1',
+      '--verbosity=debug',
+      '--subscribe-all-subnets',
+      '--goldfish-vote-ledger',
+      '--p2p-colocation-whitelist=0.0.0.0/0,::/0',
+    ]
+    +
+    (
+      groups['bootnode']
+      | map('extract', hostvars, ['bootnodoor_fact_enr'])
+      | select('defined')
+      | map('regex_replace', '^', '--bootstrap-node=')
+      | list
+    )
+  }}
 
 # role: ethpandaops.general.geth
 geth_container_name: execution
