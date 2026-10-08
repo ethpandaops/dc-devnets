@@ -1,0 +1,2 @@
+prysm_container_command_extra_debug_args:
+  - --gossipsub-trace
