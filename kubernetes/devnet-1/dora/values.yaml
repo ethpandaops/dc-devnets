@@ -8,11 +8,11 @@ dora:
     pullPolicy: IfNotPresent
   resources:
     requests:
-      cpu: 500m
-      memory: 1Gi
+      cpu: 1000m
+      memory: 2Gi
     limits:
-      cpu: 1500m
-      memory: 3Gi
+      cpu: 4000m
+      memory: 8Gi
   ingress:
     enabled: true
     className: ingress-nginx-public
