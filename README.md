@@ -15,6 +15,7 @@ This repository contains the infrastructure code used to setup ~all~ dev/testnet
 Status   | Network    | Links   | Ansible                                                      | Terraform | Kubernetes
 ------   | --------   | ----     |  -----                                                       | -------   | ------
  WIP | [devnet-0](https://notes.ethereum.org/@ethpandaops/dc-devnet-0) | [Network config](network-configs/devnet-0) / [Inventory](https://bootnode-1.srv.dc-devnet-0.ethpandaops.io/meta/api/v1/inventory.json) / [Validator ranges](https://bootnode-1.srv.dc-devnet-0.ethpandaops.io/meta/api/v1/validator-ranges.json) | [🔗](ansible/inventories/devnet-0) | [🔗](terraform/devnet-0) | -
+ WIP | [devnet-1](https://notes.ethereum.org/@ethpandaops/dc-devnet-1) | [Network config](network-configs/devnet-1) / [Inventory](https://bootnode-1.srv.dc-devnet-1.ethpandaops.io/meta/api/v1/inventory.json) / [Validator ranges](https://bootnode-1.srv.dc-devnet-1.ethpandaops.io/meta/api/v1/validator-ranges.json) | [🔗](ansible/inventories/devnet-1) | [🔗](terraform/devnet-1) | -
 
 # Development
 ## Version management for tools
