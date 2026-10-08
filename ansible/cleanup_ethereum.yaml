@@ -82,17 +82,11 @@
             - /data/ethrex
             # Consensus layer data
             - /data/lighthouse
-            - /data/lighthouse-validator
             - /data/lodestar
-            - /data/lodestar-validator
             - /data/nimbus
-            - /data/nimbus-validator
             - /data/prysm
-            - /data/prysm-validator
             - /data/teku
-            - /data/teku-validator
             - /data/grandine
-            - /data/grandine-validator
             # Config files
             - /data/ethereum-network-config
             - /data/execution-auth.secret
@@ -100,3 +94,22 @@
             - /data/xatu-sentry
             # MEV
             - /data/mev_relay
+
+        - name: Remove validator data but keep the deployed keys
+          ansible.builtin.shell: |
+            [ -d "{{ item }}" ] || exit 0
+            find "{{ item }}" -mindepth 1 -maxdepth 1 \
+              ! -name wallet ! -name wallet_pass.txt \
+              ! -name keys ! -name secrets ! -name keystores \
+              ! -name teku-keys ! -name teku-secrets ! -name lodestar-secrets \
+              ! -name .validator_keyrange ! -name change_operations.json \
+              -print -exec rm -rf {} +
+          register: cleanup_validator_dirs
+          changed_when: cleanup_validator_dirs.stdout | length > 0
+          loop:
+            - /data/lighthouse-validator
+            - /data/lodestar-validator
+            - /data/nimbus-validator
+            - /data/prysm-validator
+            - /data/teku-validator
+            - /data/grandine-validator
