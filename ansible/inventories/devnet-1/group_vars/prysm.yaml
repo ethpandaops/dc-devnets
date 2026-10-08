@@ -51,6 +51,7 @@ prysm_container_command_extra_simple_args:
   - --min-sync-peers=1
   - --verbosity=debug
   - --goldfish-vote-ledger
+  - --partial-attestations
   #- --ffg-committees-per-subnet-per-slot=3
   # Devnet peers are few and often share a /24, which prysm's colocation limit
   # would otherwise treat as a sybil cluster and refuse to peer with.

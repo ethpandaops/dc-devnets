@@ -96,6 +96,7 @@
       tags: [docker_nginx_proxy]
 
 - hosts: ethereum_node
+  serial: "{{ batch_count | default('100%') }}"
   become: true
   roles:
     - role: ethpandaops.general.ethereum_node
