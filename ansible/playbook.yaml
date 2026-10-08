@@ -12,22 +12,22 @@
       when: devnet_name | default('') == 'template'
       tags: always
 
-- hosts: localhost
-  roles:
-    - role: ethpandaops.general.ethereum_genesis
-      tags: [ethereum_genesis]
+# - hosts: localhost
+#   roles:
+#     - role: ethpandaops.general.ethereum_genesis
+#       tags: [ethereum_genesis]
 
-- import_playbook: ethpandaops.general.bootstrap_server
-  vars:
-    target: "all:!localhost"
-    bootstrap_docker_registry_auths:
-      registry-1.docker.io:
-        username: "{{ secret_dockerhub.username }}"
-        password: "{{ secret_dockerhub.token }}"
-      https://index.docker.io/v1/:
-        username: "{{ secret_dockerhub.username }}"
-        password: "{{ secret_dockerhub.token }}"
-  tags: [init-server, bootstrap]
+# - import_playbook: ethpandaops.general.bootstrap_server
+#   vars:
+#     target: "all:!localhost"
+#     bootstrap_docker_registry_auths:
+#       registry-1.docker.io:
+#         username: "{{ secret_dockerhub.username }}"
+#         password: "{{ secret_dockerhub.token }}"
+#       https://index.docker.io/v1/:
+#         username: "{{ secret_dockerhub.username }}"
+#         password: "{{ secret_dockerhub.token }}"
+#   tags: [init-server, bootstrap]
 
 # - hosts: all:!localhost
 #   serial: "{{ batch_count | default('100%') }}"
