@@ -40,7 +40,11 @@ prysm_container_volumes:
 prysm_container_entrypoint:
   - /app/cmd/beacon-chain/beacon-chain
 prysm_container_command_extra_args: >-
-  {{ prysm_container_command_extra_simple_args + prysm_container_command_extra_bootnode_args }}
+  {{ prysm_container_command_extra_simple_args + prysm_container_command_extra_bootnode_args
+     + (prysm_debug_tracing_enabled | default(false) | bool | ternary(prysm_container_command_extra_debug_args, [])) }}
+prysm_container_command_extra_debug_args:
+  - --goldfish-vote-ledger
+  - --gossipsub-trace
 prysm_container_command_extra_simple_args:
   - --grpc-gateway-corsdomain=*
   - --chain-config-file=/network-config/config.yaml
@@ -48,7 +52,6 @@ prysm_container_command_extra_simple_args:
   - --contract-deployment-block={{ ethereum_network_deposit_contract_block }}
   - --min-sync-peers=1
   - --verbosity=debug
-  - --goldfish-vote-ledger
   - --ffg-committees-per-subnet-per-slot=3
   # Devnet peers are few and often share a /24, which prysm's colocation limit
   # would otherwise treat as a sybil cluster and refuse to peer with.
