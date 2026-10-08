@@ -61,6 +61,9 @@
 #     - role: ethpandaops.general.wildcard_cert_issuer
 #       tags: [init-server, wildcard_cert]
 
+- import_playbook: s3_playbook.yaml
+  tags: [ethereum, eth_testnet_config, ethereum_testnet_config]
+
 - hosts: bootnode
   become: true
   roles:
