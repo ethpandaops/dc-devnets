@@ -68,6 +68,6 @@ prysm_validator_container_command_extra_args:
   - --chain-config-file=/network-config/config.yaml
   - --graffiti={{ inventory_hostname }}
   - --decoupled-ffg-vote-at-slot-start
-#  - --decoupled-ffg-vote-spread
+  - --decoupled-ffg-vote-spread
 #  - --ffg-committees-per-subnet-per-slot=3
 prysm_validator_datadir: /data/prysm-validator
