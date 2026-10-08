@@ -13,8 +13,8 @@ ethereum_el_bootnodes: >-
 ethereum_node_xatu_sentry_enabled: false
 
 # role: ethpandaops.general.brakebear
-brakebear_download_speed: "{{ ethereum_node_cl_supernode_enabled | ternary('500Mbps', '50Mbps') }}"
-brakebear_upload_speed: "{{ ethereum_node_cl_supernode_enabled | ternary('500Mbps', '50Mbps') }}"
+brakebear_download_speed: "{{ ethereum_node_cl_supernode_enabled | ternary('1024Mbps', '50Mbps') }}"
+brakebear_upload_speed: "{{ ethereum_node_cl_supernode_enabled | ternary('1024Mbps', '50Mbps') }}"
 brakebear_config: |
   log_level: "info"
   docker_containers:

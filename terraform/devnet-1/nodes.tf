@@ -28,8 +28,9 @@ variable "nodes" {
   description = "List of node definitions for the devnet"
   default = [
     { name = "bootnode", count = 1, cloud = "digitalocean" },
-    { name = "prysm-geth", count = 200, cloud = "digitalocean", supernode = true, validator_start = 0, validator_end = 40000 },
-    { name = "prysm-geth", count = 300, cloud = "digitalocean", supernode = false, validator_start = 40000, validator_end = 40300 },
+    { name = "prysm-geth", count = 100, cloud = "digitalocean", supernode = true, validator_start = 0, validator_end = 80000 },
+    { name = "prysm-geth", count = 100, cloud = "digitalocean", supernode = false, size = "s-8vcpu-32gb-640gb-intel", validator_start = 80000, validator_end = 80100 },
+    { name = "prysm-geth", count = 300, cloud = "digitalocean", supernode = false, validator_start = 80100, validator_end = 80400 },
   ]
 
   validation {
