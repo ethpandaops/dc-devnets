@@ -1,3 +1,2 @@
 prysm_container_command_extra_debug_args:
-  - --goldfish-vote-ledger
   - --gossipsub-trace
