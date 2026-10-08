@@ -41,10 +41,8 @@ prysm_container_entrypoint:
   - /app/cmd/beacon-chain/beacon-chain
 prysm_container_command_extra_args: >-
   {{ prysm_container_command_extra_simple_args + prysm_container_command_extra_bootnode_args
-     + (prysm_debug_tracing_enabled | default(false) | bool | ternary(prysm_container_command_extra_debug_args, [])) }}
-prysm_container_command_extra_debug_args:
-  - --goldfish-vote-ledger
-  - --gossipsub-trace
+     + prysm_container_command_extra_debug_args }}
+prysm_container_command_extra_debug_args: []
 prysm_container_command_extra_simple_args:
   - --grpc-gateway-corsdomain=*
   - --chain-config-file=/network-config/config.yaml
